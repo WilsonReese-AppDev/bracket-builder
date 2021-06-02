@@ -1,0 +1,42 @@
+<%= form_with(model: matchup) do |form| %>
+  <% if matchup.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(matchup.errors.count, "error") %> prohibited this matchup from being saved:</h2>
+
+      <ul>
+        <% matchup.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :winner_id %>
+    <%= form.text_field :winner_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.number_field :position %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bracket_id %>
+    <%= form.text_field :bracket_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_a_id %>
+    <%= form.text_field :option_a_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :option_b_id %>
+    <%= form.text_field :option_b_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

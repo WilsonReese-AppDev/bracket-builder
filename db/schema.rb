@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_011755) do
+ActiveRecord::Schema.define(version: 2021_06_02_012904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,5 +32,23 @@ ActiveRecord::Schema.define(version: 2021_06_02_011755) do
     t.index ["bracket_id"], name: "index_entries_on_bracket_id"
   end
 
+  create_table "matchups", force: :cascade do |t|
+    t.bigint "winner_id"
+    t.integer "position"
+    t.bigint "bracket_id", null: false
+    t.bigint "option_a_id"
+    t.bigint "option_b_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bracket_id"], name: "index_matchups_on_bracket_id"
+    t.index ["option_a_id"], name: "index_matchups_on_option_a_id"
+    t.index ["option_b_id"], name: "index_matchups_on_option_b_id"
+    t.index ["winner_id"], name: "index_matchups_on_winner_id"
+  end
+
   add_foreign_key "entries", "brackets"
+  add_foreign_key "matchups", "brackets"
+  add_foreign_key "matchups", "entries", column: "option_a_id"
+  add_foreign_key "matchups", "entries", column: "option_b_id"
+  add_foreign_key "matchups", "entries", column: "winner_id"
 end
