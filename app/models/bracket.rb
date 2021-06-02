@@ -17,40 +17,29 @@ class Bracket < ApplicationRecord
   enum status: { created: "created", in_progress: "in_progress", completed: "completed" }
   # enum number_of_entries: { eight: 8 } # gonna leave this in to come back to later on, might not need it/reformat it
 
-  # private
-    def create_entries
-      self.number_of_entries.times do |i|
-        Entry.create!(bracket: self, seed: i + 1)
-      end
+  def create_entries
+    self.number_of_entries.times do |i|
+      Entry.create!(bracket: self, seed: i + 1)
     end
+  end
 
-    def create_matchups
-      iterations = self.number_of_entries - 1
-      iterations.times do |i|
-        Matchup.create!(bracket: self, position: i + 1)
-      end
+  def create_matchups
+    iterations = self.number_of_entries - 1
+    iterations.times do |i|
+      Matchup.create!(bracket: self, position: i + 1)
     end
+  end
 
-    def assign_matchups
-      first_round_count = (self.number_of_entries) / 2
-      entries = self.entries
-      matchups = self.matchups
+  def assign_matchups
+    first_round_count = (self.number_of_entries) / 2
+    entries = self.entries
+    matchups = self.matchups
 
-      first_round_count.times do |i|
-        matchup = matchups.find_by(position: i + 1)
-        entry_a = entries.find_by(seed: i + 1)
-        entry_b = entries.find_by(seed: self.number_of_entries - i)
-        matchup.update!(option_a: entry_a, option_b: entry_b)
-      end
+    first_round_count.times do |i|
+      matchup = matchups.find_by(position: i + 1)
+      entry_a = entries.find_by(seed: i + 1)
+      entry_b = entries.find_by(seed: self.number_of_entries - i)
+      matchup.update!(option_a: entry_a, option_b: entry_b)
     end
-
-      # matchup = matchups.find_by(position: 1)
-      # entry_a = entries.find_by(seed: 1)
-      # entry_b = entries.find_by(seed: 8)
-
-    # def create_reports_for_bench_users
-    #   User.on_bench.each do |user|
-    #     user.reports.create!(period: self)
-    #   end
-    # end
+  end
 end
