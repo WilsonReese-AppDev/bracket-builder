@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root "brackets#index"
+  
   resources :matchups
   resources :entries
   resources :brackets
