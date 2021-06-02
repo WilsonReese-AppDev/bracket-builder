@@ -13,4 +13,17 @@ class Bracket < ApplicationRecord
   has_many :matchups, dependent: :destroy
 
   enum status: { created: "created", in_progress: "in_progress", completed: "completed" }
+
+  # private
+    def create_matchups_and_entries
+      self.number_of_entries.times do |i|
+        Entry.create!(bracket: self, seed: i)
+      end
+    end
+
+    # def create_reports_for_bench_users
+    #   User.on_bench.each do |user|
+    #     user.reports.create!(period: self)
+    #   end
+    # end
 end
