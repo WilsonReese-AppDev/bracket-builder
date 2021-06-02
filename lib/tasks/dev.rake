@@ -9,7 +9,8 @@ task sample_data: :environment do
   end
 
   b = Bracket.create(number_of_entries: 8)
-  b.create_matchups_and_entries
+  b.create_entries
+  b.create_matchups
 
   ending = Time.now
   p "It took #{(ending - starting).to_i} seconds to create sample data."

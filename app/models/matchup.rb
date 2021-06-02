@@ -13,9 +13,9 @@
 #
 class Matchup < ApplicationRecord
   belongs_to :bracket
-  belongs_to :winner, class_name: "Entry"
-  belongs_to :option_a, class_name: "Entry"
-  belongs_to :option_b, class_name: "Entry"
+  belongs_to :winner, class_name: "Entry", optional: true
+  belongs_to :option_a, class_name: "Entry", optional: true
+  belongs_to :option_b, class_name: "Entry", optional: true
 
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }
