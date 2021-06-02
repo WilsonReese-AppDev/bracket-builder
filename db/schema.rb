@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_02_011250) do
+ActiveRecord::Schema.define(version: 2021_06_02_011755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,4 +22,15 @@ ActiveRecord::Schema.define(version: 2021_06_02_011250) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "entries", force: :cascade do |t|
+    t.bigint "bracket_id", null: false
+    t.string "name"
+    t.integer "seed"
+    t.boolean "eliminated", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bracket_id"], name: "index_entries_on_bracket_id"
+  end
+
+  add_foreign_key "entries", "brackets"
 end
