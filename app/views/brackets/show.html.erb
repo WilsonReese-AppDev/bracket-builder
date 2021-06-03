@@ -1,14 +1,5 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Number of entries:</strong>
-  <%= @bracket.number_of_entries %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @bracket.status %>
-</p>
-
+<%= render @bracket %>
 <%= link_to 'Edit', edit_bracket_path(@bracket) %> |
 <%= link_to 'Back', brackets_path %>

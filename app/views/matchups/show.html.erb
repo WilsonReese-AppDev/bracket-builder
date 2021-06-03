@@ -1,29 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Winner:</strong>
-  <%= @matchup.winner_id %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @matchup.position %>
-</p>
-
-<p>
-  <strong>Bracket:</strong>
-  <%= @matchup.bracket_id %>
-</p>
-
-<p>
-  <strong>Option a:</strong>
-  <%= @matchup.option_a_id %>
-</p>
-
-<p>
-  <strong>Option b:</strong>
-  <%= @matchup.option_b_id %>
-</p>
+<%= render "matchups/matchup", matchup: @matchup %>
 
 <%= link_to 'Edit', edit_matchup_path(@matchup) %> |
 <%= link_to 'Back', matchups_path %>

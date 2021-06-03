@@ -1,0 +1,15 @@
+<div class="table-responsive">
+  <table class="table">
+    <%= render "matchups/matchup", matchup: @bracket.matchups.find_by(position: 1) %>
+  </table>
+</div>
+
+<p>
+  <strong>Number of entries:</strong>
+  <%= @bracket.number_of_entries %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bracket.status %>
+</p>
