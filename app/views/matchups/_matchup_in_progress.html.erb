@@ -1,0 +1,20 @@
+<div class="card mb-2">
+  <div class="card-body">
+    <p class="card-text">
+      <% if matchup.round == 1 %>
+        Option a radio
+      <% else %>
+        <%= matchup.round %>
+        Winner from previous round
+      <% end %>
+    </p>
+    <p class="card-text">
+      <% if matchup.round == 1 %>
+        Option b radio
+      <% else %>
+        <%= matchup.round %>
+        Winner from previous round
+      <% end %>
+    </p>
+  </div>
+</div>
