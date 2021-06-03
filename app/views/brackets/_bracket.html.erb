@@ -16,16 +16,20 @@
           <%= render "matchups/matchup", matchup: @bracket.matchup_at(7) %>
         </td>
       </tr>
-      <tr>
-        
-      </tr>
-      <tr>
-      </tr>
-      <tr>
-      </tr>
     </tbody>
   </table>
 </div>
+
+<%= form_with(model: bracket) do |form| %>
+  <div class="field">
+    <%= form.label :status, class: "sr-only" %>
+    <%= form.hidden_field :status, value: :in_progress %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Start Bracket", class: "btn btn-primary" %>
+  </div>
+<% end %>
 
 <p>
   <strong>Number of entries:</strong>
