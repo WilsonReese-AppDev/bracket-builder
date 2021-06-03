@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Matchups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Winner</th>
+      <th>Position</th>
+      <th>Bracket</th>
+      <th>Option a</th>
+      <th>Option b</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matchups.each do |matchup| %>
+      <tr>
+        <td><%= matchup.winner_id %></td>
+        <td><%= matchup.position %></td>
+        <td><%= matchup.bracket_id %></td>
+        <td><%= matchup.option_a_id %></td>
+        <td><%= matchup.option_b_id %></td>
+        <td><%= link_to 'Show', matchup %></td>
+        <td><%= link_to 'Edit', edit_matchup_path(matchup) %></td>
+        <td><%= link_to 'Destroy', matchup, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Matchup', new_matchup_path %>

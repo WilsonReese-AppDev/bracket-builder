@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bracket:</strong>
+  <%= @entry.bracket_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @entry.name %>
+</p>
+
+<p>
+  <strong>Seed:</strong>
+  <%= @entry.seed %>
+</p>
+
+<p>
+  <strong>Eliminated:</strong>
+  <%= @entry.eliminated %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>

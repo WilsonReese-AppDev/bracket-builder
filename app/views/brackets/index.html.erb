@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Brackets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number of entries</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @brackets.each do |bracket| %>
+      <tr>
+        <td><%= bracket.number_of_entries %></td>
+        <td><%= bracket.status %></td>
+        <td><%= link_to 'Show', bracket %></td>
+        <td><%= link_to 'Edit', edit_bracket_path(bracket) %></td>
+        <td><%= link_to 'Destroy', bracket, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bracket', new_bracket_path %>

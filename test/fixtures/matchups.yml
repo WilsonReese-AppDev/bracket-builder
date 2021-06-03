@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: matchups
+#
+#  id          :bigint           not null, primary key
+#  winner_id   :bigint
+#  position    :integer
+#  bracket_id  :bigint           not null
+#  option_a_id :bigint
+#  option_b_id :bigint
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+one:
+  winner: one
+  position: 1
+  bracket: one
+  option_a: one
+  option_b: one
+
+two:
+  winner: two
+  position: 1
+  bracket: two
+  option_a: two
+  option_b: two
