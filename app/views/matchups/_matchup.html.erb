@@ -3,8 +3,9 @@
     <p class="card-text">
       <% if matchup.option_a != nil %>
         <%= matchup.option_a.seed %>
+        <%= matchup.round %>
       <% elsif true %>
-        Blank for now
+        <%= matchup.round %>
       <% end %>
     </p>
     <p class="card-text">
