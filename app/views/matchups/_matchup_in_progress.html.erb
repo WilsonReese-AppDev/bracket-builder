@@ -3,15 +3,21 @@
     <% if matchup.round == 1 %>
       <%= form_with(model: matchup) do |form| %>
         <div class="form-check">
-          <%= form.collection_radio_buttons :winner_id, [matchup.option_a, matchup.option_b], :id, :name do |option| %>
-            <div>
-              <%= option.radio_button %>
-              <%= option.label %>
+          <div class="row">
+            <div class="col-8">
+              <%= form.collection_radio_buttons :winner_id, [matchup.option_a, matchup.option_b], :id, :name do |option| %>
+                <div>
+                  <%= option.radio_button %>
+                  <%= option.label %>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <div class="actions">
-          <%= form.submit ">", class: "btn btn-secondary btn-sm" %>
+            <div class="col-4">
+              <div class="actions">
+                <%= form.submit ">", class: "btn btn-secondary btn-sm" %>
+              </div>
+            </div>
+          </div>
         </div>
       <% end %>
     <% else %>
