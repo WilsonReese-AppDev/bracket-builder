@@ -5,6 +5,7 @@
         <%= render "entries/entry", entry: matchup.option_a %>
       <% else %>
         <%= matchup.round %>
+        Winner from previous round
       <% end %>
     </p>
     <p class="card-text">
@@ -12,6 +13,7 @@
         <%= render "entries/entry", entry: matchup.option_b %>
       <% else %>
         <%= matchup.round %>
+        Winner from previous round
       <% end %>
     </p>
   </div>
