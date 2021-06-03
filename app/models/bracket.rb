@@ -44,4 +44,8 @@ class Bracket < ApplicationRecord
       matchup.update!(option_a: entry_a, option_b: entry_b)
     end
   end
+
+  def matchup_at(position)
+    return self.matchups.find_by(position: position)
+  end
 end

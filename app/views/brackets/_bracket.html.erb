@@ -1,6 +1,29 @@
 <div class="table-responsive">
   <table class="table">
-    <%= render "matchups/matchup", matchup: @bracket.matchups.find_by(position: 1) %>
+    <tbody>
+      <tr>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(1) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(2) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(3) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(4) %>
+        </td>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(5) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(6) %>
+        </td>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(7) %>
+        </td>
+      </tr>
+      <tr>
+        
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
   </table>
 </div>
 

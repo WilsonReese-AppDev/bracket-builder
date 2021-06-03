@@ -1,42 +1,20 @@
-<div col>
-  <div class="card">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">
+<div class="card mb-2">
+  <div class="card-body">
+    <p class="card-text">
+      <% if matchup.option_a != nil %>
         <%= matchup.option_a.seed %>
-      </p>
-      <p class="card-text">
+      <% elsif true %>
+        Blank for now
+      <% end %>
+    </p>
+    <p class="card-text">
+      <% if matchup.option_b != nil %>
         <%= matchup.option_b.seed %>
-      </p>
-
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
+      <% elsif true %>
+        Blank for now
+      <% end %>
+    </p>
   </div>
 </div>
 
-<p>
-  <strong>Winner:</strong>
-  <%= matchup.winner_id %>
-</p>
 
-<p>
-  <strong>Position:</strong>
-  <%= matchup.position %>
-</p>
-
-<p>
-  <strong>Bracket:</strong>
-  <%= matchup.bracket_id %>
-</p>
-
-<p>
-  <strong>Option a:</strong>
-  <%= matchup.option_a_id %>
-</p>
-
-<p>
-  <strong>Option b:</strong>
-  <%= matchup.option_b_id %>
-</p>
