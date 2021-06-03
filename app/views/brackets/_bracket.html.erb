@@ -1,0 +1,38 @@
+<div class="table-responsive">
+  <table class="table">
+    <tbody>
+      <tr>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(1) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(2) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(3) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(4) %>
+        </td>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(5) %>
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(6) %>
+        </td>
+        <td class="align-middle">
+          <%= render "matchups/matchup", matchup: @bracket.matchup_at(7) %>
+        </td>
+      </tr>
+      <tr>
+        
+      </tr>
+      <tr>
+      </tr>
+      <tr>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>
+  <strong>Number of entries:</strong>
+  <%= @bracket.number_of_entries %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @bracket.status %>
+</p>
