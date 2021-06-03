@@ -12,26 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :bracket_id %>
-    <%= form.text_field :bracket_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, class: "sr-only" %>
     <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :seed %>
-    <%= form.number_field :seed %>
-  </div>
-
-  <div class="field">
-    <%= form.label :eliminated %>
-    <%= form.check_box :eliminated %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>

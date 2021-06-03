@@ -1,0 +1,5 @@
+<% if entry.name == nil %>
+  <%= render "entries/form", entry: entry %>
+<% else %>
+  <%= entry.name %>
+<% end %>
