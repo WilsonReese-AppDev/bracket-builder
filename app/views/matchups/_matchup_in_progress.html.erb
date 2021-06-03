@@ -1,32 +1,18 @@
 <div class="card mb-2">
   <div class="card-body">
     <% if matchup.round == 1 %>
-      <%= form_with(model: matchup) do |form| %>
-        <div class="form-check">
-          <div class="row">
-            <div class="col-8">
-              <%= form.collection_radio_buttons :winner_id, [matchup.option_a, matchup.option_b], :id, :name do |option| %>
-                <div>
-                  <%= option.radio_button %>
-                  <%= option.label %>
-                </div>
-              <% end %>
-            </div>
-            <div class="col-4">
-              <div class="actions">
-                <%= form.submit ">", class: "btn btn-secondary btn-sm" %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
+      <%= render "matchups/versus_form", matchup: matchup %>
     <% else %>
       <%= matchup.round %>
       <% if matchup.previous_winners[0] != nil %>
         <%= matchup.previous_winners[0].name %>
+      <% else %>
+        Winner from previous round
       <% end %>
       <% if matchup.previous_winners[1] != nil %>
         <%= matchup.previous_winners[1].name %>
+      <% else %>
+        Winner from previous round
       <% end %>
     <% end %>
   </div>
