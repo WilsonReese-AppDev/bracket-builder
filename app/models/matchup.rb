@@ -17,6 +17,8 @@ class Matchup < ApplicationRecord
   belongs_to :option_a, class_name: "Entry", optional: true
   belongs_to :option_b, class_name: "Entry", optional: true
 
+  # TODO add after_update action for get_previous_winners => when a winner is chosen, the next matchup gets updated with its option_a and option_b
+
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }
 
@@ -48,5 +50,11 @@ class Matchup < ApplicationRecord
     first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
     second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
     return [first_previous_winner, second_previous_winner]
+  end
+
+  def get_previous_winners
+    first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
+    second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
+    update!(option_a: first_previous_winner, option_b: second_previous_winner)
   end
 end
