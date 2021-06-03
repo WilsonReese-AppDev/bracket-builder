@@ -6,6 +6,7 @@
       <%= matchup.round %>
       <% if matchup.previous_winners[0] != nil %>
         <%= matchup.previous_winners[0].name %>
+        <%= matchup.send_winner_to_next_matchup.position %>
       <% else %>
         Winner from previous round
       <% end %>
