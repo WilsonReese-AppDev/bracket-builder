@@ -43,4 +43,10 @@ class Matchup < ApplicationRecord
     end
     return round_position
   end
+
+  def previous_winners
+    first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
+    second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
+    return [first_previous_winner, second_previous_winner]
+  end
 end

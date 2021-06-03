@@ -22,8 +22,12 @@
       <% end %>
     <% else %>
       <%= matchup.round %>
-      Winner from previous round
-      <%= matchup.round_position %>
+      <% if matchup.previous_winners[0] != nil %>
+        <%= matchup.previous_winners[0].name %>
+      <% end %>
+      <% if matchup.previous_winners[1] != nil %>
+        <%= matchup.previous_winners[1].name %>
+      <% end %>
     <% end %>
   </div>
 </div>
