@@ -17,6 +17,6 @@ class Matchup < ApplicationRecord
   belongs_to :option_a, class_name: "Entry"
   belongs_to :option_b, class_name: "Entry"
 
-  scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
-  scope :unplayed, -> { where(winner.empty?) }
+  scope :untouched, -> { where(option_a: nil, option_b: nil) }
+  scope :unplayed, -> { where(winner: nil) }
 end
