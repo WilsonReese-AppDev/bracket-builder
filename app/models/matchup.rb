@@ -21,14 +21,26 @@ class Matchup < ApplicationRecord
   scope :unplayed, -> { where(winner.empty?) }
 
   def round
-    matchups_in_round = self.bracket.number_of_entries / 2
+    matchups_in_round = bracket.number_of_entries / 2
     round = 1
-    round_position = self.position
+    round_position = position
     until round_position <= matchups_in_round
       round_position -= matchups_in_round
       matchups_in_round /= 2
       round += 1
     end
     return round
+  end
+
+  def round_position
+    matchups_in_round = bracket.number_of_entries / 2
+    round = 1
+    round_position = position
+    until round_position <= matchups_in_round
+      round_position -= matchups_in_round
+      matchups_in_round /= 2
+      round += 1
+    end
+    return round_position
   end
 end
