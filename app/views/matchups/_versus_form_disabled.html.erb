@@ -9,11 +9,11 @@
       <% end %>
     </div>
     <div class="form-check disabled">
-      <%= radio_button_tag "matchup[winner_id]", "option_a", false, disabled: true %>
-      <% if matchup.option_a.present? %>
-        <%= label_tag "option_a", "#{matchup.option_a.name}" %>
+      <%= radio_button_tag "matchup[winner_id]", "option_b", false, disabled: true %>
+      <% if matchup.option_b.present? %>
+        <%= label_tag "option_b", "#{matchup.option_a.name}" %>
       <% else %>
-        <%= label_tag "option_a", "" %>
+        <%= label_tag "option_b", "" %>
       <% end %>
     </div>
   </div>

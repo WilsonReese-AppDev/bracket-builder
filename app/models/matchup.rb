@@ -70,4 +70,8 @@ class Matchup < ApplicationRecord
       end
     end
   end
+
+  def options
+    [option_a, option_b]
+  end
 end

@@ -2,7 +2,7 @@
   <div class="form-check">
     <div class="row">
       <div class="col-8">
-        <%= form.collection_radio_buttons :winner_id, [matchup.option_a, matchup.option_b], :id, :name do |option| %>
+        <%= form.collection_radio_buttons :winner_id, matchup.options, :id, :name do |option| %>
           <div>
             <%= option.radio_button %>
             <%= option.label  %>
