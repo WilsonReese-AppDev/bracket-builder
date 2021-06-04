@@ -19,9 +19,10 @@ class Matchup < ApplicationRecord
   belongs_to :option_a, class_name: "Entry", optional: true
   belongs_to :option_b, class_name: "Entry", optional: true
 
+  after_update :send_winner_to_next_matchup
+
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }
-  # scope :last_round, -> { find_by(round: Math.log2(bracket.number_of_entries).to_i) }
 
   def assign_round_to_matchup
     matchups_in_round = bracket.number_of_entries / 2
@@ -47,7 +48,7 @@ class Matchup < ApplicationRecord
     update!(round_position: round_position)
   end
 
-  def send_winner_to_next_matchup
+  def next_matchup
     final_round = Math.log2(bracket.number_of_entries).to_i
     next_round = round + 1
     if round != final_round
@@ -56,19 +57,25 @@ class Matchup < ApplicationRecord
       else
         next_round_position = round_position / 2
       end
-      bracket.matchups.find_by(round: next_round, round_position: next_round_position)
+      next_matchup = bracket.matchups.find_by(round: next_round, round_position: next_round_position)
     end
   end
 
-  def previous_winners
-    first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
-    second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
-    return [first_previous_winner, second_previous_winner]
+  def send_winner_to_next_matchup
+    if round != bracket.final_round
+      next_matchup.update!(option_a: winner)
+    end
   end
 
-  def get_previous_winners
-    first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
-    second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
-    update!(option_a: first_previous_winner, option_b: second_previous_winner)
-  end
+  # def previous_winners
+  #   first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
+  #   second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
+  #   return [first_previous_winner, second_previous_winner]
+  # end
+
+  # def get_previous_winners
+  #   first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
+  #   second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
+  #   update!(option_a: first_previous_winner, option_b: second_previous_winner)
+  # end
 end

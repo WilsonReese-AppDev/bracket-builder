@@ -4,15 +4,15 @@
       <%= render "matchups/versus_form", matchup: matchup %>
     <% else %>
       <%= matchup.round %>
-      <% if matchup.previous_winners[0] != nil %>
-        <%= matchup.previous_winners[0].name %>
+      <% if matchup.option_a != nil %>
+        <%= matchup.option_a.name %>
       <% else %>
-        Winner from previous round
+        Option_a is nil
       <% end %>
-      <% if matchup.previous_winners[1] != nil %>
-        <%= matchup.previous_winners[1].name %>
+      <% if matchup.option_b != nil %>
+        <%= matchup.option_b.name %>
       <% else %>
-        Winner from previous round
+        Option_b is nil
       <% end %>
     <% end %>
   </div>

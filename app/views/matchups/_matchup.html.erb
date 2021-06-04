@@ -1,9 +1,9 @@
 id: <%= matchup.id %>
 round: <%= matchup.round %>
 rp: <%= matchup.round_position %>
-lr: <%= matchup.bracket.last_round %>
-<% if matchup.round != matchup.bracket.last_round %>
-  next matchup: <%= matchup.send_winner_to_next_matchup.id %>
+lr: <%= matchup.bracket.final_round %>
+<% if matchup.round != matchup.bracket.final_round %>
+  next matchup: <%= matchup.next_matchup.id %>
 <% end %>
 
 <% if matchup.bracket.status == "created" %>
