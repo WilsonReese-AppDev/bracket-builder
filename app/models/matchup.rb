@@ -2,15 +2,16 @@
 #
 # Table name: matchups
 #
-#  id          :bigint           not null, primary key
-#  winner_id   :bigint
-#  position    :integer
-#  bracket_id  :bigint           not null
-#  option_a_id :bigint
-#  option_b_id :bigint
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  round       :integer          default(1)
+#  id             :bigint           not null, primary key
+#  winner_id      :bigint
+#  position       :integer
+#  bracket_id     :bigint           not null
+#  option_a_id    :bigint
+#  option_b_id    :bigint
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  round          :integer          default(1)
+#  round_position :integer          default(1)
 #
 class Matchup < ApplicationRecord
   belongs_to :bracket
@@ -33,7 +34,7 @@ class Matchup < ApplicationRecord
     update!(round: round)
   end
 
-  def round_position
+  def assign_round_position
     matchups_in_round = bracket.number_of_entries / 2
     round = 1
     round_position = position
@@ -42,7 +43,7 @@ class Matchup < ApplicationRecord
       matchups_in_round /= 2
       round += 1
     end
-    return round_position
+    update!(round_position: round_position)
   end
 
   def send_winner_to_next_matchup

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_04_004231) do
+ActiveRecord::Schema.define(version: 2021_06_04_012700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2021_06_04_004231) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "round", default: 1
+    t.integer "round_position", default: 1
     t.index ["bracket_id"], name: "index_matchups_on_bracket_id"
     t.index ["option_a_id"], name: "index_matchups_on_option_a_id"
     t.index ["option_b_id"], name: "index_matchups_on_option_b_id"

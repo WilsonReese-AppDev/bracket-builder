@@ -15,6 +15,7 @@ task sample_data: :environment do
 
   b.matchups.each do |matchup|
     matchup.assign_round_to_matchup
+    matchup.assign_round_position
   end
 
   ending = Time.now

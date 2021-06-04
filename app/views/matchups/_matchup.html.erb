@@ -1,3 +1,7 @@
+id: <%= matchup.id %>
+round: <%= matchup.round %>
+rp: <%= matchup.round_position %>
+
 <% if matchup.bracket.status == "created" %>
   <%= render "matchups/matchup_created", matchup: matchup %>
 <% elsif matchup.bracket.status == "in_progress" %>
