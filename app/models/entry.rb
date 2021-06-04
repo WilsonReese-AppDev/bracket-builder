@@ -16,4 +16,6 @@ class Entry < ApplicationRecord
   has_many :matchups, foreign_key: "winner_id"
   has_many :a_slots, class_name: "Matchup", foreign_key: "option_b_id"
   has_many :b_slots, class_name: "Matchup", foreign_key: "option_b_id"
+
+  # scope :head_to_head, -> { joins(:matchup).where(position: {current: true}) }
 end

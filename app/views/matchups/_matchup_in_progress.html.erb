@@ -1,0 +1,5 @@
+<% if matchup.option_a.present? && matchup.option_b.present? %>
+  <%= render "matchups/versus_form", matchup: matchup %>
+<% else %>
+  <%= render "matchups/versus_form_disabled", matchup: matchup %>
+<% end %>

@@ -38,7 +38,7 @@ class MatchupsController < ApplicationController
   def update
     respond_to do |format|
       if @matchup.update(matchup_params)
-        format.html { redirect_to @matchup, notice: "Matchup was successfully updated." }
+        format.html { redirect_back fallback_location: root_path,  notice: "Matchup was successfully updated." }
         format.json { render :show, status: :ok, location: @matchup }
       else
         format.html { render :edit, status: :unprocessable_entity }

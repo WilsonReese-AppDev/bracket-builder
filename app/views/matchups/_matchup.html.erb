@@ -1,22 +1,13 @@
-<div class="card mb-2">
-  <div class="card-body">
-    <p class="card-text">
-      <% if matchup.round == 1 %>
-        <%= render "entries/entry", entry: matchup.option_a %>
-      <% else %>
-        <%= matchup.round %>
-        Winner from previous round
-      <% end %>
-    </p>
-    <p class="card-text">
-      <% if matchup.round == 1 %>
-        <%= render "entries/entry", entry: matchup.option_b %>
-      <% else %>
-        <%= matchup.round %>
-        Winner from previous round
-      <% end %>
-    </p>
+<% if matchup.bracket.status == "created" %>
+  <div class="card mb-2" style="width: 250px;">
+    <div class="card-body">
+      <%= render "matchups/matchup_created", matchup: matchup %>
+    </div>
   </div>
-</div>
-
-
+<% elsif matchup.bracket.status == "in_progress" %>
+  <div class="card mb-2" style="width: 250px;">
+    <div class="card-body">
+      <%= render "matchups/matchup_in_progress", matchup: matchup %>
+    </div>
+  </div>
+<% end %>

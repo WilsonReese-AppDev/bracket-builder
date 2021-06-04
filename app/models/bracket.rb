@@ -12,7 +12,7 @@ class Bracket < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :matchups, dependent: :destroy
 
-# NEED TO MAKE AN after_create ACTION TO AUTOMATICALLY RUN THE METHODS WHEN A BRACKET IS CREATED (like in periods model of status_reporting)
+# TODO NEED TO MAKE AN after_create ACTION TO AUTOMATICALLY RUN THE METHODS WHEN A BRACKET IS CREATED (like in periods model of status_reporting)
 
   # make a validation that the number of entries equals an acceptable bracket (8, for now; add 4 and 16 later; add power of 2 later), if not then the bracket needs to fail to create
 
@@ -33,9 +33,7 @@ class Bracket < ApplicationRecord
   end
 
   def assign_matchups
-    first_round_count = (self.number_of_entries) / 2
-    entries = self.entries
-    matchups = self.matchups
+    first_round_count = number_of_entries / 2
 
     first_round_count.times do |i|
       matchup = matchups.find_by(position: i + 1)
@@ -46,6 +44,10 @@ class Bracket < ApplicationRecord
   end
 
   def matchup_at(position)
-    return self.matchups.find_by(position: position)
+    matchups.find_by(position: position)
+  end
+
+  def final_round
+    final_round = Math.log2(number_of_entries).to_i
   end
 end
