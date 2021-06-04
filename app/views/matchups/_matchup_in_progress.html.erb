@@ -1,15 +1,14 @@
 <div class="card mb-2">
   <div class="card-body">
-    <% if matchup.round == 1 %>
+    <% if matchup.option_a.present? && matchup.option_b.present? %>
       <%= render "matchups/versus_form", matchup: matchup %>
     <% else %>
-      <%= matchup.round %>
-      <% if matchup.option_a != nil %>
+      <% if matchup.option_a.present? %>
         <%= matchup.option_a.name %>
       <% else %>
         Option_a is nil
       <% end %>
-      <% if matchup.option_b != nil %>
+      <% if matchup.option_b.present? %>
         <%= matchup.option_b.name %>
       <% else %>
         Option_b is nil
