@@ -4,16 +4,6 @@
       <%= render "matchups/versus_form", matchup: matchup %>
     <% else %>
       <%= render "matchups/versus_form_disabled", matchup: matchup %>
-      <% if matchup.option_a.present? %>
-        <%= matchup.option_a.name %>
-      <% else %>
-        Option_a is nil
-      <% end %>
-      <% if matchup.option_b.present? %>
-        <%= matchup.option_b.name %>
-      <% else %>
-        Option_b is nil
-      <% end %>
     <% end %>
   </div>
 </div>
