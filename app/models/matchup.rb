@@ -19,7 +19,7 @@ class Matchup < ApplicationRecord
   belongs_to :option_a, class_name: "Entry", optional: true
   belongs_to :option_b, class_name: "Entry", optional: true
 
-  after_update :send_winner_to_next_matchup
+  after_update :send_winner_to_next_matchup, if: proc {|matchup| matchup.winner.present? }
 
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }

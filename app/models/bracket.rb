@@ -33,9 +33,7 @@ class Bracket < ApplicationRecord
   end
 
   def assign_matchups
-    first_round_count = (self.number_of_entries) / 2
-    entries = self.entries
-    matchups = self.matchups
+    first_round_count = number_of_entries / 2
 
     first_round_count.times do |i|
       matchup = matchups.find_by(position: i + 1)
@@ -46,7 +44,7 @@ class Bracket < ApplicationRecord
   end
 
   def matchup_at(position)
-    return self.matchups.find_by(position: position)
+    matchups.find_by(position: position)
   end
 
   def final_round
