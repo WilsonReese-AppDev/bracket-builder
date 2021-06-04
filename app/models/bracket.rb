@@ -48,4 +48,8 @@ class Bracket < ApplicationRecord
   def matchup_at(position)
     return self.matchups.find_by(position: position)
   end
+
+  def last_round
+    last_round = Math.log2(number_of_entries).to_i
+  end
 end

@@ -21,6 +21,7 @@ class Matchup < ApplicationRecord
 
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }
+  # scope :last_round, -> { find_by(round: Math.log2(bracket.number_of_entries).to_i) }
 
   def assign_round_to_matchup
     matchups_in_round = bracket.number_of_entries / 2
@@ -47,23 +48,15 @@ class Matchup < ApplicationRecord
   end
 
   def send_winner_to_next_matchup
-    if round_position.odd?
-      next_round_position = (round_position + 1) / 2
-    else
-      next_round_position = round_position / 2
-    end
-    this_round_max_position = 0
-    bracket_positions = bracket.number_of_entries
-    round.times do
-      bracket_positions /= 2
-      this_round_max_position += bracket_positions
-    end
-    next_matchup_position = this_round_max_position + next_round_position
-    next_matchup = bracket.matchups.find_by(position: next_matchup_position)
-    if round_position.odd?
-      next_matchup.update(option_a: winner)
-    else
-      next_matchup.update(option_b: winner)
+    final_round = Math.log2(bracket.number_of_entries).to_i
+    next_round = round + 1
+    if round != final_round
+      if round_position.odd?
+        next_round_position = (round_position + 1) / 2
+      else
+        next_round_position = round_position / 2
+      end
+      bracket.matchups.find_by(round: next_round, round_position: next_round_position)
     end
   end
 
