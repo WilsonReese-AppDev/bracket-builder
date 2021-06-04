@@ -63,19 +63,11 @@ class Matchup < ApplicationRecord
 
   def send_winner_to_next_matchup
     if round != bracket.final_round
-      next_matchup.update!(option_a: winner)
+      if round_position.odd?
+        next_matchup.update!(option_a: winner)
+      else
+        next_matchup.update!(option_b: winner)
+      end
     end
   end
-
-  # def previous_winners
-  #   first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
-  #   second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
-  #   return [first_previous_winner, second_previous_winner]
-  # end
-
-  # def get_previous_winners
-  #   first_previous_winner = bracket.matchups.find_by(position: round_position * 2 - 1).winner
-  #   second_previous_winner = bracket.matchups.find_by(position: round_position * 2).winner
-  #   update!(option_a: first_previous_winner, option_b: second_previous_winner)
-  # end
 end
