@@ -12,7 +12,7 @@ class Bracket < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :matchups, dependent: :destroy
 
-# NEED TO MAKE AN after_create ACTION TO AUTOMATICALLY RUN THE METHODS WHEN A BRACKET IS CREATED (like in periods model of status_reporting)
+# TODO NEED TO MAKE AN after_create ACTION TO AUTOMATICALLY RUN THE METHODS WHEN A BRACKET IS CREATED (like in periods model of status_reporting)
 
   # make a validation that the number of entries equals an acceptable bracket (8, for now; add 4 and 16 later; add power of 2 later), if not then the bracket needs to fail to create
 

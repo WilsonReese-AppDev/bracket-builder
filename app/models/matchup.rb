@@ -10,6 +10,7 @@
 #  option_b_id :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  round       :integer          default(1)
 #
 class Matchup < ApplicationRecord
   belongs_to :bracket
@@ -20,7 +21,7 @@ class Matchup < ApplicationRecord
   scope :untouched, -> { where(option_a.empty? && option_b.empty?) }
   scope :unplayed, -> { where(winner.empty?) }
 
-  def round
+  def assign_round_to_matchup
     matchups_in_round = bracket.number_of_entries / 2
     round = 1
     round_position = position
@@ -29,7 +30,7 @@ class Matchup < ApplicationRecord
       matchups_in_round /= 2
       round += 1
     end
-    return round
+    update!(round: round)
   end
 
   def round_position
@@ -52,13 +53,17 @@ class Matchup < ApplicationRecord
     end
     this_round_max_position = 0
     bracket_positions = bracket.number_of_entries
-    (1..round).each do |i|
+    round.times do
       bracket_positions /= 2
       this_round_max_position += bracket_positions
     end
     next_matchup_position = this_round_max_position + next_round_position
     next_matchup = bracket.matchups.find_by(position: next_matchup_position)
-    return next_matchup
+    if round_position.odd?
+      next_matchup.update(option_a: winner)
+    else
+      next_matchup.update(option_b: winner)
+    end
   end
 
   def previous_winners

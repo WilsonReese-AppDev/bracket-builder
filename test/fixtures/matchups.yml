@@ -10,6 +10,7 @@
 #  option_b_id :bigint
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  round       :integer          default(1)
 #
 
 one:

@@ -13,6 +13,10 @@ task sample_data: :environment do
   b.create_matchups
   b.assign_matchups
 
+  b.matchups.each do |matchup|
+    matchup.assign_round_to_matchup
+  end
+
   ending = Time.now
   p "It took #{(ending - starting).to_i} seconds to create sample data."
   p "#{Bracket.count} bracket(s) created."
